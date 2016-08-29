@@ -4,9 +4,7 @@
 
 EAPI=5
 
-PYTHON_COMPAT=( python2_7 )
-
-inherit eutils distutils-r1 git-2
+inherit eutils git-r3
 
 DESCRIPTION="Chez Scheme"
 HOMEPAGE="https://cisco.github.io/ChezScheme"
@@ -18,7 +16,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 
 src_configure() {
-	econf
+	./configure --installprefix=/usr --installman=/usr/share/man --datadir=/usr/share
 }
 
 src_install() {
