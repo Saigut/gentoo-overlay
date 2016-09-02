@@ -16,10 +16,9 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 
 src_configure() {
-	./configure --installprefix=/usr --installman=/usr/share/man --datadir=/usr/share
+	./configure --installprefix=/usr --installbin=/usr/bin --installlib=/usr/lib --installman=/usr/share/man --temproot=${D}
 }
 
 src_install() {
-	emake DESTDIR="${D}" install
-
+	emake install
 }
