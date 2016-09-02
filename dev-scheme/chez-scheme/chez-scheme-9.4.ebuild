@@ -4,16 +4,16 @@
 
 EAPI=5
 
-inherit eutils git-r3
+inherit eutils
 
 DESCRIPTION="Chez Scheme is an implementation of the Revised 6 Report on Scheme (R6RS) with numerous language and programming environment extensions."
 HOMEPAGE="https://cisco.github.io/ChezScheme"
 
-EGIT_REPO_URI="https://github.com/cisco/ChezScheme.git"
+SRC_URI="https://github.com/cisco/ChezScheme/archive/v${PV}.tar.gz -> ${PF}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~x86 ~amd64"
 IUSE="+threads"
 
 DEPEND="
@@ -23,8 +23,13 @@ DEPEND="
 
 RDEPEND="${DEPEND}"
 
+src_unpack() {
+	unpack ${A}
+	mv ChezScheme-${PV} ${PF}
+}
+
 src_configure() {
-        local para_thread
+	local para_thread
 
 	if use threads ; then
 	   para_thread="--threads"
